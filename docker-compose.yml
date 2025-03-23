@@ -1,0 +1,18 @@
+services:
+  seu-blog:
+    container_name: seu-blog
+    build:
+      context: .
+    ports:
+      - "8085:8080"
+    volumes:
+      - seu-blog-logs:/app/logs
+    networks:
+      - seu-blog-network
+volumes:
+  seu-blog-logs:
+
+
+networks:
+  seu-blog-network:
+    driver: bridge

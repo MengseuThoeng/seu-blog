@@ -12,6 +12,6 @@ public interface BlogService {
 
     BlogResponse getBlogBySlug(String slug);
 
-    Page<BlogResponse> getAllBlog( int page, int size);
+    Page<BlogResponse> getAllBlog(int page, int size);
 
 }

@@ -38,4 +38,20 @@ public class User extends Auditable {
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private Set<Blog> blogs;
 
+
+    @Column(columnDefinition = "BOOLEAN DEFAULT TRUE")
+    private Boolean accountNonExpired;
+
+    @Column(columnDefinition = "BOOLEAN DEFAULT TRUE")
+    private Boolean accountNonLocked;
+
+    @Column(columnDefinition = "BOOLEAN DEFAULT TRUE")
+    private Boolean credentialsNonExpired;
+
+    @Column(columnDefinition = "BOOLEAN DEFAULT FALSE")
+    private Boolean isEnabled;
+
+    @Column(columnDefinition = "BOOLEAN DEFAULT FALSE")
+    private Boolean emailVerified;
+
 }

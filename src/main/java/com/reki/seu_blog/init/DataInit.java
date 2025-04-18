@@ -1,20 +1,33 @@
 package com.reki.seu_blog.init;
 
 
+import com.reki.seu_blog.domain.Authority;
 import com.reki.seu_blog.domain.Category;
+import com.reki.seu_blog.domain.User;
+import com.reki.seu_blog.domain.UserAuthority;
 import com.reki.seu_blog.features.category.CategoryRepository;
+import com.reki.seu_blog.features.user.AuthorityRepository;
+import com.reki.seu_blog.features.user.UserRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Component
 @RequiredArgsConstructor
 public class DataInit {
 
     private final CategoryRepository categoryRepository;
+
+    private final UserRepository userRepository;
+
+    private final PasswordEncoder passwordEncoder;
+
+    private final AuthorityRepository authorityRepository;
 
     @PostConstruct
     public void dataInit() {
@@ -275,6 +288,37 @@ public class DataInit {
 
             // Save all categories to the repository
             categoryRepository.saveAll(categories);
+        }
+
+        if (userRepository.count() == 0) {
+            Authority user = new Authority();
+            user.setName("USER");
+            authorityRepository.save(user);
+
+            Authority admin = new Authority();
+            admin.setName("ADMIN");
+            authorityRepository.save(admin);
+
+
+            User newUser = new User();
+            newUser.setUsername("admin");
+            newUser.setPassword(passwordEncoder.encode("admin"));
+
+            newUser.setEmail("admin@admin.com");
+            newUser.setAvatar("https://static.vecteezy.com/system/resources/thumbnails/019/194/935/small_2x/global-admin-icon-color-outline-vector.jpg");
+            newUser.setIsDeleted(false);
+
+
+            UserAuthority adminAuthority = new UserAuthority();
+            adminAuthority.setUser(newUser);
+            adminAuthority.setAuthority(admin);
+
+            newUser.setAuthority(Set.of(adminAuthority));
+
+
+            userRepository.save(newUser);
+
+
         }
 
     }

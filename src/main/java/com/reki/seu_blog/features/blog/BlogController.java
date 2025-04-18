@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,6 +18,7 @@ public class BlogController {
 
     private final BlogService blogService;
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/create")
     public BasedResponse<?> createBlog(@Valid @RequestBody BlogCreateRequest request){
         return blogService.createBlog(request);

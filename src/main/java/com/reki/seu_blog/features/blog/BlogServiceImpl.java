@@ -68,9 +68,10 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public BlogResponse getBlogBySlug(String slug) {
-        return blogRepository.findBySlug(slug).orElseThrow(
-                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Blog with slug '" + slug + "' does not exist")
+        Blog blog = blogRepository.findBySlug(slug).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Blog with name '" + slug + "' does not exist")
         );
+        return blogMapper.toBlogResponse(blog);
     }
 
     @Override

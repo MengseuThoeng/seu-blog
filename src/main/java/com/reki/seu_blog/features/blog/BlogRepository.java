@@ -9,5 +9,5 @@ import java.util.Optional;
 public interface BlogRepository extends JpaRepository<Blog, Long> {
     Boolean existsBySlug(String existingSlug);
 
-    Optional<BlogResponse> findBySlug(String slug);
+    Optional<Blog> findBySlug(String slug);
 }

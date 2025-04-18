@@ -4,8 +4,10 @@ spring:
   datasource:
     username: postgres
     password: postgres
-    url: jdbc:postgresql://localhost:5168/seu-blog
+#    url: jdbc:postgresql://localhost:5168/seu-blog
+    url: jdbc:postgresql://34.124.163.170:5168/seu-blog
     driver-class-name: org.postgresql.Driver
+
   jpa:
     properties:
       hibernate:
@@ -20,3 +22,13 @@ spring:
 #      mode: always
 #      platform: postgresql
 #      schema-locations: classpath:sql/schema.sql
+
+keys.access-private-token: keys/access-private
+keys.access-public-token: keys/access-public
+keys.refresh-public-token: keys/refresh-public
+keys.refresh-private-token: keys/refresh-private
+
+logging:
+  level:
+    org.springframework:
+      security: debug

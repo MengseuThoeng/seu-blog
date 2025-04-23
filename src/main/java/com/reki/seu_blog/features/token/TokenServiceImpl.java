@@ -76,10 +76,10 @@ public class TokenServiceImpl implements TokenService {
         JwtClaimsSet refreshJwtClaimsSet = JwtClaimsSet.builder()
                 .id(username)
                 .subject("Refresh Resource")
-                .audience(List.of("WEB"))
+                .audience(List.of("WEB", "MOBILE"))
                 .issuedAt(now)
                 .expiresAt(now.plus(1, ChronoUnit.DAYS))
-                .issuer(username)  // Use the issuer from the refresh token
+                .issuer(username    )  // Use the issuer from the refresh token
                 .claim("scope", scope)
                 .build();
 

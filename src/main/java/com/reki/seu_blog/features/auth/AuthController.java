@@ -2,6 +2,7 @@ package com.reki.seu_blog.features.auth;
 
 import com.reki.seu_blog.features.auth.dto.AuthenticationResponse;
 import com.reki.seu_blog.features.auth.dto.LoginRequest;
+import com.reki.seu_blog.features.auth.dto.RefreshTokenRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,6 +23,13 @@ public class AuthController {
     AuthenticationResponse login(@Valid @RequestBody LoginRequest loginRequest) {
         System.out.println("Login Request: " + loginRequest);
         return authService.login(loginRequest);
+    }
+
+    @PreAuthorize("permitAll()")
+    @PostMapping("/refresh")
+    AuthenticationResponse refreshToken(@Valid @RequestBody RefreshTokenRequest refreshTokenRequest) {
+        System.out.println("Refresh Request: " + refreshTokenRequest);
+        return authService.refreshToken(refreshTokenRequest);
     }
 
 

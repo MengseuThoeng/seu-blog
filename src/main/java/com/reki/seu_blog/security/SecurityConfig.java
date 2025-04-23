@@ -7,13 +7,11 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 import com.reki.seu_blog.util.KeyUtil;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -29,7 +27,6 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationProvider;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import java.util.UUID;
 
@@ -56,7 +53,7 @@ public class SecurityConfig {
         return provider;
     }
 
-    //    @Bean
+//    @Bean
 //    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 //        http
 //                .csrf(AbstractHttpConfigurer::disable) // disable csrf
@@ -66,6 +63,7 @@ public class SecurityConfig {
 //        );
 //        return http.build();
 //    }
+
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
@@ -73,7 +71,7 @@ public class SecurityConfig {
                 authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers("/api/v1/auth/**").permitAll()
-                                .anyRequest().permitAll()
+                                .anyRequest().authenticated()
         );
 
         http

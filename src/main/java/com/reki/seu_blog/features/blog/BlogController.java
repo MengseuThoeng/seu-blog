@@ -31,14 +31,14 @@ public class BlogController {
     }
 
 
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("permitAll()")
     @GetMapping("/{slug}")
-    public BlogResponse getBlogBySlug(@PathVariable String slug,
-                                      @AuthenticationPrincipal Jwt jwt){
-        System.out.println("JWT: " + jwt.getId());
+    public BlogResponse getBlogBySlug(@PathVariable String slug){
+//        System.out.println("JWT: " + jwt.getId());
         return blogService.getBlogBySlug(slug);
     }
 
+    @PreAuthorize("permitAll()")
     @GetMapping
     public Page<BlogResponse> getAllBlog(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size){
         return blogService.getAllBlog(page, size);

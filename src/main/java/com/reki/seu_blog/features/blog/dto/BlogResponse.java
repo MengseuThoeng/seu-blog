@@ -9,6 +9,12 @@ public record BlogResponse(
 
     String cover,
 
+    String slug,
+
+    String  createdBy,
+
+    String createdAt,
+
     Set<String> categories
 ) {
 }

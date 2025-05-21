@@ -1,12 +1,14 @@
 spring.application.name: seu-blog
 
 spring:
+  profiles:
+    active: dev
   datasource:
-    username: postgres
-    password: postgres
+#    username: postgres
+#    password: postgres
 #    url: jdbc:postgresql://localhost:5168/seu-blog
-    url: jdbc:postgresql://34.124.163.170:5168/seu-blog
-    driver-class-name: org.postgresql.Driver
+#    url: jdbc:postgresql://34.124.163.170:5168/seu-blog
+
 
   jpa:
     properties:

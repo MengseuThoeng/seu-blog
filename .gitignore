@@ -38,4 +38,4 @@ out/
 
 application-*.yml
 
-ca (1).pem
+postgres.pem

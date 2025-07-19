@@ -305,6 +305,7 @@ public class DataInit {
             newUser.setPassword(passwordEncoder.encode("admin"));
 
             newUser.setEmail("admin@admin.com");
+            newUser.setEmailVerified(true);
             newUser.setAvatar("https://static.vecteezy.com/system/resources/thumbnails/019/194/935/small_2x/global-admin-icon-color-outline-vector.jpg");
             newUser.setIsDeleted(false);
 

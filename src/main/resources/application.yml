@@ -1,13 +1,12 @@
 spring.application.name: seu-blog
 
 spring:
-  profiles:
-    active: dev
+#  profiles:
+#    active: dev
   datasource:
-#    username: postgres
-#    password: postgres
-#    url: jdbc:postgresql://localhost:5168/seu-blog
-#    url: jdbc:postgresql://34.124.163.170:5168/seu-blog
+    username: seuuser
+    password: seupassword
+    url: jdbc:postgresql://postgres:5432/seublogdb
 
 
   jpa:
